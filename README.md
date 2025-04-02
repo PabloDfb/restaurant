@@ -1,0 +1,2 @@
+# restaurant
+NextJS + Django project
