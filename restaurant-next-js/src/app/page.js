@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-
 /**
  * Fetches a menu item by ID.
  * @param {number} id The ID of the menu item to retrieve.
@@ -24,8 +23,9 @@ async function deleteMenu(id) {
 async function getData() {
   const res = await fetch("http://127.0.0.1:8000/api/menu/");
   if (!res.ok) {
-    throw new Error("Failed to fetch data");
+    throw new Error("Error al obtener el menú");
   }
+
   return res.json();
 }
 
@@ -41,7 +41,7 @@ const MenuItem = ({ id, name, price, onEdit, onDelete }) => {
       </div>
       <div className="menu-item-actions">
         <button className="edit-button" onClick={onEdit}>
-          Edit
+          Editar
         </button>
         <button
           className="delete-button"
@@ -49,13 +49,12 @@ const MenuItem = ({ id, name, price, onEdit, onDelete }) => {
             deleteMenu(id).then(() => onDelete(id));
           }}
         >
-          Delete
+          Eliminar
         </button>
       </div>
     </div>
   );
 };
-
 
 /**
  * The main page component.
@@ -109,12 +108,14 @@ export default function Page() {
   return (
     <div>
       <button className="add-button" onClick={() => router.push("/add")}>
-        Add
+        Agregar ítem
       </button>
       {displaySuccessMessage.show && (
         <p className="success-message">
-          {displaySuccessMessage.type === "add" ? "Added a" : "Modified a"} menu
-          item.
+          {displaySuccessMessage.type === "add"
+            ? "Se ha agregado un"
+            : "Se ha modificado un"}{" "}
+          ítem del menú.
         </p>
       )}
       {menuItems ? (
@@ -129,7 +130,7 @@ export default function Page() {
           />
         ))
       ) : (
-        <p>Loading...</p>
+        <p>Cargando...</p>
       )}
     </div>
   );
