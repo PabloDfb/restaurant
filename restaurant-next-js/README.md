@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a [Next.js] + [Django] project. It was created for the sole purpose of studying how Next.js works, at the same time learning how to create an API with Django's restframework.
 
 ## Getting Started
 
